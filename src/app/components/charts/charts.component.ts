@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ChartComponent } from './chart/chart.component';
 import { DataComponent } from './data-component/data.component';
 import { color } from 'echarts/core';
+import { ECharts } from 'echarts';
 
 @Component({
   selector: 'app-charts',
@@ -132,7 +133,7 @@ export default class ChartsComponent {
       },
     ],
   };
-  topCoursesOptions1 = {
+  topCoursesOptions1: any = {
     title: {
       text: 'Курсы по популярности',
       left: 'left',
@@ -144,10 +145,10 @@ export default class ChartsComponent {
       }
     },
     grid: {
-      left: '30%',
-      right: '10%',
+      left: '-10%',
       bottom: '10%',
-      top: '20%'
+      top: '20%',
+      containLabel: true
     },
     xAxis: {
       type: 'value',
@@ -159,15 +160,16 @@ export default class ChartsComponent {
         'INGLIZ TILI',
         'ELEKTRON TUORAT',
         'WEB DESIGN',
-        'SMM - Social Media Marketing\nvideo-o‘quv kursi',
+        'SMM - Social Media\nMarketing video-o‘quv kursi',
         'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
       ],
+      inverse: true,
       axisTick: { show: false },
       axisLine: { show: false },
       axisLabel: {
         align: 'left',
         margin: 230,
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 600,
         color: "black",
       }
@@ -189,22 +191,91 @@ export default class ChartsComponent {
         },
         barWidth: '20'
       }
-    ]
+    ],
+    responsive: true
   };
-  topCoursesOptions2 = {
+  topCoursesOptions2: any = {
+  title: {
+    text: 'Курсы по популярности',
+    left: 'left',
+    top: '5%',
+    textStyle: {
+      fontSize: 14
+    }
+  },
+  grid: {
+    left: '-10%',
+    bottom: '10%',
+    top: '20%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    show: false
+  },
+  yAxis: {
+    type: 'category',
+    data: [
+      'INGLIZ TILI',
+      'ELEKTRON TUORAT',
+      'WEB DESIGN',
+      'SMM - Social Media\nMarketing video-o‘quv kursi',
+      'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
+    ],
+    inverse: true,
+    axisTick: { show: false },
+    axisLine: { show: false },
+    axisLabel: {
+      align: 'left',
+      margin: 210,
+      fontSize: 12,
+      fontWeight: 600,
+      color: "black",
+      // formatter: (value: string) => {
+      //   const maxLength = 20;
+      //   if (value.length > maxLength) {
+      //     return value.match(/.{1,20}/g)?.join('\n');
+      //   }
+      //   return value;
+      // }
+    }
+  },
+  series: [
+    {
+      type: 'bar',
+      data: [12356, 9568, 7981, 3546, 3546],
+      label: {
+        show: true,
+        position: 'right',
+        formatter: '{c}',
+        color: 'black',
+        fontSize: 13,
+      },
+      itemStyle: {
+        color: '#DCBA8D',
+        borderRadius: [0, 5, 5, 0]
+      },
+      barWidth: '40%'
+    }
+  ],
+  responsive: true
+  };
+  option = {
     title: {
-      text: 'Курсы по популярности',
-      left: 'left',
-      top: '5%',
-      textStyle: {
-        fontSize: 14
+      text: 'World Population'
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
       }
     },
+    legend: {},
     grid: {
-      left: '30%',
-      right: '10%',
-      bottom: '10%',
-      top: '20%'
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
     },
     xAxis: {
       type: 'value',
@@ -212,19 +283,114 @@ export default class ChartsComponent {
     },
     yAxis: {
       type: 'category',
-      data: [
-        'INGLIZ TILI',
-        'ELEKTRON TUORAT',
-        'WEB DESIGN',
-        'SMM - Social Media Marketing\nvideo-o‘quv kursi',
-        'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
-      ],
+      data: ['INGLIZ TILI', 'ELEKTRON TUORAT', 'WEB DESIGN', 'SMM - Social Media Marketing\nvideo-o‘quv kursi', 'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'],
+      show: false,
+      axisLine: {
+        show: false
+      },
+      axisTick: {
+        show: false
+      },
+      axisLabel: {
+          align: 'center',
+          fontSize: 12,
+          fontWeight: 600,
+          color: "black",
+          margin: -150
+        }
+    },
+    series: [
+      {
+        type: 'bar',
+        data: [18203, 23489, 29034, 104970, 131744],
+        label: {
+          show: true,
+          position: 'bottom',
+          formatter: '{b}',
+          color: 'black',
+          fontSize: 13,
+        },
+        itemStyle: {
+          color: '#1F3C88',
+          borderRadius: [4, 4, 4, 4]
+        },
+        barWidth: '20',
+      }
+    ]
+  };
+  @HostListener('window:resize')
+  onResize() {
+    const isMobile = window.innerWidth <= 768;
+    this.topCoursesOptions1 = isMobile
+      ? this.getMobile(this.topCoursesOptions1)
+      : this.getDesktop(this.topCoursesOptions1);
+
+    this.topCoursesOptions2 = isMobile
+      ? this.getMobile(this.topCoursesOptions2)
+      : this.getDesktop(this.topCoursesOptions2);
+  }
+
+  getMobile(topCoursesOptions: any){
+    return {
+    ...structuredClone(topCoursesOptions),
+    yAxis: {
+      type: 'category',
+      data: topCoursesOptions.yAxis.data,
+      inverse: true,
+      show: false,
+      axisLabel: {
+        margin: -150
+      }
+    },
+    grid: {
+      left: '10%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    series: [
+      {
+        type: 'bar',
+        data: topCoursesOptions.series[0].data,
+        label: {
+          show: true,
+          position: 'bottom',
+          formatter: '{b}',
+          color: 'black',
+          fontSize: 10,
+        },
+        itemStyle: {
+          color: '#1F3C88',
+          borderRadius: [4, 4, 4, 4]
+        },
+        barWidth: '20',
+      }
+    ]
+    };
+  }
+  getDesktop(topCoursesOptions: any){
+    return {
+      ...structuredClone(topCoursesOptions),
+    grid: {
+      left: '-10%',
+      bottom: '10%',
+      top: '20%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      show: false
+    },
+    yAxis: {
+      type: 'category',
+      data: topCoursesOptions.yAxis.data,
+      inverse: true,
       axisTick: { show: false },
       axisLine: { show: false },
       axisLabel: {
         align: 'left',
         margin: 230,
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 600,
         color: "black",
       }
@@ -232,7 +398,7 @@ export default class ChartsComponent {
     series: [
       {
         type: 'bar',
-        data: [12356, 9568, 7981, 3546, 3546],
+        data: topCoursesOptions.series[0].data,
         label: {
           show: true,
           position: 'insideRight',
@@ -241,12 +407,134 @@ export default class ChartsComponent {
           fontSize: 13,
         },
         itemStyle: {
-          color: '#DCBA8D',
+          color: '#1F3C88',
           borderRadius: [0, 5, 5, 0]
         },
         barWidth: '20'
       }
-    ]
+    ],
+    responsive: true
   };
+  }
+
+  ngAfterContentInit(){
+    this.updateActivePeiod("hour");
+  }
+
+  updateActivePeiod(name: string){
+    let obj!: {xLabels: string[],yValues: number[]};
+    switch(name){
+      case "month":
+        obj = this.setMonth();
+        break;
+      case "day":
+        obj = this.setDay();
+        break;
+      case "hour":
+        obj = this.setHours();
+    }
+
+    this.activePeriodChartOptions = {
+      title: {
+        text: 'Active period',
+        left: 'left',
+        textStyle: { fontSize: 24, fontWeight: 'bold', color: "#2D3649" }
+      },
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+      xAxis: {
+        type: 'category', data: obj.xLabels,
+        axisLabel: {rotate: 0}
+      },
+      yAxis: {
+        type: 'value',
+        min: 0,
+        max: 200
+      },
+      series: [
+        {
+          type: 'bar',
+          data: obj.yValues,
+          barWidth: '50%',
+          itemStyle: { color: '#1f9bff', borderRadius: [5, 5, 0, 0] },
+        }
+      ]
+    };
+  }
+
+  setMonth(){
+    const xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const yValues = monthlyData.map(item => item.value);
+    return {xLabels, yValues};
+  }
+  setDay(){
+    const xLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const yValues = dailyData.map(item => item.value);
+    return {xLabels,yValues};
+  }
+  setHours(){
+    const xLabels = hourlyData.map(item =>
+      item.timestamp.getHours().toString().padStart(2, '0') + ':00'
+    );
+    const yValues = hourlyData.map(item => item.value);
+    return {xLabels,yValues};
+  }
 
 }
+
+interface ChartData {
+  timestamp: Date;
+  value: number;
+}
+const monthlyData = [
+  { timestamp: new Date(2025, 0, 1), value: 120 },
+  { timestamp: new Date(2025, 1, 1), value: 95 },
+  { timestamp: new Date(2025, 2, 1), value: 140 },
+  { timestamp: new Date(2025, 3, 1), value: 170 },
+  { timestamp: new Date(2025, 4, 1), value: 120 },
+  { timestamp: new Date(2025, 5, 1), value: 100 },
+  { timestamp: new Date(2025, 6, 1), value: 160 },
+  { timestamp: new Date(2025, 7, 1), value: 70 },
+  { timestamp: new Date(2025, 8, 1), value: 80 },
+  { timestamp: new Date(2025, 9, 1), value: 140 },
+  { timestamp: new Date(2025, 10, 1), value: 110 },
+  { timestamp: new Date(2025, 11, 1), value: 150 },
+  { timestamp: new Date(2025, 12, 1), value: 50 }
+];
+const dailyData = [
+  { timestamp: new Date(2025, 4, 1), value: 30 },
+  { timestamp: new Date(2025, 4, 2), value: 60 },
+  { timestamp: new Date(2025, 4, 3), value: 50 },
+  { timestamp: new Date(2025, 4, 3), value: 20 },
+  { timestamp: new Date(2025, 4, 3), value: 100 },
+  { timestamp: new Date(2025, 4, 3), value: 60 },
+  { timestamp: new Date(2025, 4, 3), value: 80 }
+];
+
+const hourlyData = [
+  { timestamp: new Date(2025, 4, 18, 1), value: 10 },
+  { timestamp: new Date(2025, 4, 18, 2), value: 20 },
+  { timestamp: new Date(2025, 4, 18, 3), value: 30 },
+  { timestamp: new Date(2025, 4, 18, 4), value: 40 },
+  { timestamp: new Date(2025, 4, 18, 5), value: 50 },
+  { timestamp: new Date(2025, 4, 18, 6), value: 60 },
+  { timestamp: new Date(2025, 4, 18, 7), value: 70 },
+  { timestamp: new Date(2025, 4, 18, 8), value: 80 },
+  { timestamp: new Date(2025, 4, 18, 9), value: 90 },
+  { timestamp: new Date(2025, 4, 18, 10), value: 100 },
+  { timestamp: new Date(2025, 4, 18, 11), value: 110 },
+  { timestamp: new Date(2025, 4, 18, 12), value: 120 },
+  { timestamp: new Date(2025, 4, 18, 13), value: 130 },
+  { timestamp: new Date(2025, 4, 18, 14), value: 140 },
+  { timestamp: new Date(2025, 4, 18, 15), value: 150 },
+  { timestamp: new Date(2025, 4, 18, 16), value: 140 },
+  { timestamp: new Date(2025, 4, 18, 17), value: 130 },
+  { timestamp: new Date(2025, 4, 18, 18), value: 120 },
+  { timestamp: new Date(2025, 4, 18, 19), value: 110 },
+  { timestamp: new Date(2025, 4, 18, 20), value: 100 },
+  { timestamp: new Date(2025, 4, 18, 21), value: 90 },
+  { timestamp: new Date(2025, 4, 18, 22), value: 70 },
+  { timestamp: new Date(2025, 4, 18, 23), value: 80 },
+  { timestamp: new Date(2025, 4, 18, 24), value: 60 }
+];
+

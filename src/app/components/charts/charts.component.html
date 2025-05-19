@@ -1,13 +1,13 @@
-<div class="p-[58px] w-full grid gap-[30px]">
+<div class="p-[10px] w-full grid gap-[30px]">
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-[20px]">
     <app-chart [title]="'Статистика по полу'" [options]="genderOptions" [styleClass]="'w-full h-[430px] shadow'" [total]="'2200'" [totalText]="'Умумий сони'"></app-chart>
     <app-chart [title]="'Статистика по возрасту'" [options]="barChartOptions"  [styleClass]="'w-full h-[430px] shadow'"></app-chart>
   </div>
   <div class="relative">
     <div class="absolute grid grid-cols-3 gap-[10px] left-[43%]">
-      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Month</button>
-      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Days</button>
-      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Hour</button>
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('month')">Month</button>
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('day')">Days</button>
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('hour')">Hour</button>
     </div>
     <app-chart  [options]="activePeriodChartOptions" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
   </div>

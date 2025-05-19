@@ -42,7 +42,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -61,7 +61,10 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "landing:build"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
