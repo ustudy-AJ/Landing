@@ -1,0 +1,19 @@
+<div class="p-[20px] flex flex-col gap-[20px] bg-[white] rounded-[16px] {{styleClass}}">
+  @if(title){
+    <div class="flex items-center gap-[16px]">
+      <div class="py-[12px] px-[14px] bg-[#2563EB] rounded-[14px]">
+        <img src="/assets/icons/img-icon.svg" alt="">
+      </div>
+      <p>{{title}}</p>
+    </div>
+  }
+  <div class="w-full h-full relative">
+    @if(options.series[0].type == "pie"){
+      <div class="absolute flex flex-col items-center justify-center w-[100%] h-[100%]">
+        <p class="text-center font-base font-bold">{{total}}</p>
+        <p class="text-center font-sm font-semibold">{{totalText}}</p>
+      </div>
+    }
+    <div echarts [options]="options" class="chart" style="height: 100%;"></div>
+  </div>
+</div>

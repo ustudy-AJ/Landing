@@ -1,0 +1,27 @@
+<div class="p-[58px] w-full grid gap-[30px]">
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-[20px]">
+    <app-chart [title]="'Статистика по полу'" [options]="genderOptions" [styleClass]="'w-full h-[430px] shadow'" [total]="'2200'" [totalText]="'Умумий сони'"></app-chart>
+    <app-chart [title]="'Статистика по возрасту'" [options]="barChartOptions"  [styleClass]="'w-full h-[430px] shadow'"></app-chart>
+  </div>
+  <div class="relative">
+    <div class="absolute grid grid-cols-3 gap-[10px] left-[43%]">
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Month</button>
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Days</button>
+      <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer">Hour</button>
+    </div>
+    <app-chart  [options]="activePeriodChartOptions" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
+  </div>
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-[20px]">
+    <app-chart [options]="topCoursesOptions1" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
+    <app-chart [options]="topCoursesOptions2" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-[37px]">
+    <app-data [title]="'Всего пользователей'" [data]="'1 234 567'" [styleClass]="'shadow'"></app-data>
+    <app-data [title]="'Всего курсов'" [data]="'8'" [styleClass]="'shadow'"></app-data>
+    <app-data [title]="'Среднее время прохождения'" [data]="'12 : 05 : 46 '" [styleClass]="'shadow'"></app-data>
+    <app-data [title]="'Выдано сертификатов'" [data]="'3 598'" [styleClass]="'shadow'"></app-data>
+    <app-data [title]="'Ташкилотлар сони'" [data]="'3 598'" [styleClass]="'shadow'"></app-data>
+    <app-data [title]="'Уртача натижа'" [data]="'82,6 %'" [styleClass]="'shadow'"></app-data>
+  </div>
+</div>
