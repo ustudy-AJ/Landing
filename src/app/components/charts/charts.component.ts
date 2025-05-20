@@ -301,7 +301,8 @@ export default class ChartsComponent {
   }
 
   ngOnInit(){
-    this.updateActivePeiod("hour")
+    this.updateActivePeiod("hour");
+    this.onResize();
   }
 
   getMobile(topCoursesOptions: any, format: string | any){
