@@ -1,8 +1,9 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 import { ChartComponent } from './chart/chart.component';
 import { DataComponent } from './data-component/data.component';
 import { color } from 'echarts/core';
 import { ECharts } from 'echarts';
+import { dailyData, hourlyData, monthlyData, topFamousCourses } from '../../data/chart.data';
 
 @Component({
   selector: 'app-charts',
@@ -133,9 +134,9 @@ export default class ChartsComponent {
       },
     ],
   };
-  topCoursesOptions1: any = {
+  topFamousCoursesOptions: any = {
     title: {
-      text: 'Курсы по популярности',
+      text: topFamousCourses.title,
       left: 'left',
       top: '5%',
       textStyle: {
@@ -156,13 +157,7 @@ export default class ChartsComponent {
     },
     yAxis: {
       type: 'category',
-      data: [
-        'INGLIZ TILI',
-        'ELEKTRON TUORAT',
-        'WEB DESIGN',
-        'SMM - Social Media\nMarketing video-o‘quv kursi',
-        'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
-      ],
+      data: topFamousCourses.topCourserData.map(v =>v.name),
       inverse: true,
       axisTick: { show: false },
       axisLine: { show: false },
@@ -176,8 +171,28 @@ export default class ChartsComponent {
     },
     series: [
       {
+      type: 'bar',
+      data: topFamousCourses.topCourserData.map(v =>v.value),
+      label: {
+        show: false,
+        position: 'insideLeft',
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#000',
+        formatter: (params: any) => {
+          const labels = topFamousCourses.topCourserData.map(v =>v.name);
+          return labels[params.dataIndex];
+        }
+      },
+      itemStyle: {
+        color: 'transparent'
+      },
+      barGap: '-100%',
+      barWidth: '25'
+    },
+      {
         type: 'bar',
-        data: [12356, 9568, 7981, 3546, 3546],
+        data: topFamousCourses.topCourserData.map(v =>v.value),
         label: {
           show: true,
           position: 'insideRight',
@@ -189,76 +204,10 @@ export default class ChartsComponent {
           color: '#1F3C88',
           borderRadius: [0, 5, 5, 0]
         },
-        barWidth: '20'
+        barWidth: '25'
       }
     ],
     responsive: true
-  };
-  topCoursesOptions2: any = {
-  title: {
-    text: 'Курсы по популярности',
-    left: 'left',
-    top: '5%',
-    textStyle: {
-      fontSize: 14
-    }
-  },
-  grid: {
-    left: '-10%',
-    bottom: '10%',
-    top: '20%',
-    containLabel: true
-  },
-  xAxis: {
-    type: 'value',
-    show: false
-  },
-  yAxis: {
-    type: 'category',
-    data: [
-      'INGLIZ TILI',
-      'ELEKTRON TUORAT',
-      'WEB DESIGN',
-      'SMM - Social Media\nMarketing video-o‘quv kursi',
-      'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
-    ],
-    inverse: true,
-    axisTick: { show: false },
-    axisLine: { show: false },
-    axisLabel: {
-      align: 'left',
-      margin: 210,
-      fontSize: 12,
-      fontWeight: 600,
-      color: "black",
-      // formatter: (value: string) => {
-      //   const maxLength = 20;
-      //   if (value.length > maxLength) {
-      //     return value.match(/.{1,20}/g)?.join('\n');
-      //   }
-      //   return value;
-      // }
-    }
-  },
-  series: [
-    {
-      type: 'bar',
-      data: [12356, 9568, 7981, 3546, 3546],
-      label: {
-        show: true,
-        position: 'right',
-        formatter: '{c}',
-        color: 'black',
-        fontSize: 13,
-      },
-      itemStyle: {
-        color: '#DCBA8D',
-        borderRadius: [0, 5, 5, 0]
-      },
-      barWidth: '40%'
-    }
-  ],
-  responsive: true
   };
   option = {
     title: {
@@ -318,28 +267,129 @@ export default class ChartsComponent {
       }
     ]
   };
+  topCoursesOnPerfomenceOptions: any = {
+  title: {
+    text: topFamousCourses.title,
+    left: 'left',
+    top: '5%',
+    textStyle: {
+      fontSize: 14
+    }
+  },
+  grid: {
+    left: '-10%',
+    right: '10%',
+    bottom: '10%',
+    top: '20%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'value',
+    show: false
+  },
+  yAxis: {
+    type: 'category',
+    data: topFamousCourses.topCourserData.map(v =>v.name),
+    inverse: true,
+    axisTick: { show: false },
+    axisLine: { show: false },
+    axisLabel: {
+      align: 'left',
+      margin: 230,
+      fontSize: 12,
+      fontWeight: 600,
+      color: "black",
+    }
+  },
+  series: [
+    {
+      type: 'bar',
+      data: [12356, 9568, 7981, 3546, 3546],
+      label: {
+        show: false,
+        position: 'top',
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#000',
+        formatter: (params: any) => topFamousCourses.topCourserData.map(v =>v.value)
+      },
+      itemStyle: {
+        color: 'transparent'
+      },
+      barGap: '-100%',
+      barWidth: '25'
+    },
+    {
+      type: 'bar',
+      data: topFamousCourses.topCourserData.map(v =>v.value),
+      label: {
+        show: true,
+        position: 'insideRight',
+        color: 'white',
+        fontSize: 13,
+        formatter: (params: { value: number }) =>
+          Math.floor(params.value / 15000 * 100) + '%',
+      },
+      itemStyle: {
+        color: '#DCBA8D',
+        borderRadius: [0, 5, 5, 0],
+      },
+      barWidth: '25'
+    }
+  ],
+  responsive: true
+};
+
+
+
   @HostListener('window:resize')
   onResize() {
-    const isMobile = window.innerWidth <= 768;
-    this.topCoursesOptions1 = isMobile
-      ? this.getMobile(this.topCoursesOptions1)
-      : this.getDesktop(this.topCoursesOptions1);
+    console.log(topFamousCourses.topCourserData.map(v =>v.name));
 
-    this.topCoursesOptions2 = isMobile
-      ? this.getMobile(this.topCoursesOptions2)
-      : this.getDesktop(this.topCoursesOptions2);
+    const isMobile = window.innerWidth <= 768;
+    this.topFamousCoursesOptions = isMobile
+      ? this.getMobile(this.topFamousCoursesOptions, "number")
+      : this.getDesktop(this.topFamousCoursesOptions, "number");
+
+
+    this.topCoursesOnPerfomenceOptions = isMobile
+      ? this.getMobile(this.topCoursesOnPerfomenceOptions, "procent")
+      : this.getDesktop(this.topCoursesOnPerfomenceOptions, "procent");
+
   }
 
-  getMobile(topCoursesOptions: any){
+  ngOnInit(){
+    this.updateActivePeiod("hour")
+  }
+
+  getMobile(topCoursesOptions: any, format: string | any){
+    console.log(topCoursesOptions);
+
+    format = format==="procent" ? (params: { value: number; }) => Math.floor(params.value / 15000 * 100) + '%'
+        : format == "text" ? "{b}"
+        : format == "number" ? "{c}": "";
+
     return {
-    ...structuredClone(topCoursesOptions),
+    ...structuredClone({
+      ...topCoursesOptions,
+      series: topCoursesOptions.series.map((s: any) => ({
+        ...s,
+        label: { ...s.label, formatter: undefined }
+      }))}),
     yAxis: {
       type: 'category',
-      data: topCoursesOptions.yAxis.data,
       inverse: true,
+      data: topCoursesOptions.yAxis.data,
       show: false,
+      axisTick: { show: false },
+      axisLine: { show: false },
       axisLabel: {
-        margin: -150
+        show: false,
+        align: 'left',
+        margin: 230,
+        fontSize: 12,
+        fontWeight: 600,
+        color: "black",
       }
     },
     grid: {
@@ -350,27 +400,55 @@ export default class ChartsComponent {
     },
     series: [
       {
+      type: 'bar',
+      data: topCoursesOptions.series[0].data,
+      label: {
+        show: true,
+        position: 'insideLeft',
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#000',
+        formatter: (params: any) => {
+          const labels = topCoursesOptions.yAxis.data;
+          return labels[params.dataIndex];
+        }
+      },
+      itemStyle: {
+        color: 'transparent'
+      },
+      barWidth: '25'
+    },
+      {
         type: 'bar',
-        data: topCoursesOptions.series[0].data,
+        data: topCoursesOptions.series[1].data,
         label: {
           show: true,
-          position: 'bottom',
-          formatter: '{b}',
-          color: 'black',
-          fontSize: 10,
+          position: 'insideRight',
+          formatter: format,
+          color: 'white',
+          fontSize: 13,
         },
         itemStyle: {
-          color: '#1F3C88',
-          borderRadius: [4, 4, 4, 4]
+          color: topCoursesOptions.series[1].itemStyle.color,
+          borderRadius: [0, 5, 5, 0]
         },
-        barWidth: '20',
+        barWidth: '20'
       }
     ]
     };
   }
-  getDesktop(topCoursesOptions: any){
+  getDesktop(topCoursesOptions: any, format: any){
+    format = format==="procent" ? (params: { value: number; }) => Math.floor(params.value / 15000 * 100) + '%'
+        : format == "text" ? "{b}"
+        : format == "number" ? "{c}": "";
     return {
-      ...structuredClone(topCoursesOptions),
+      ...structuredClone({
+        ...topCoursesOptions,
+        series: topCoursesOptions.series.map((s: any) => ({
+          ...s,
+          label: { ...s.label, formatter: undefined }
+        }))
+    }),
     grid: {
       left: '-10%',
       bottom: '10%',
@@ -398,16 +476,42 @@ export default class ChartsComponent {
     series: [
       {
         type: 'bar',
-        data: topCoursesOptions.series[0].data,
+        data: [12356, 9568, 7981, 3546, 3546],
+        label: {
+          show: false,
+          position: 'top',
+          fontSize: 12,
+          fontWeight: 'bold',
+          color: '#000',
+          formatter: (params: any) => {
+            const labels = [
+              'INGLIZ TILI',
+              'ELEKTRON TUORAT',
+              'WEB DESIGN',
+              'SMM - Social Media\nMarketing video-o‘quv kursi',
+              'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
+            ];
+            return labels[params.dataIndex];
+          }
+        },
+        itemStyle: {
+          color: 'transparent'
+        },
+        barGap: '-100%',
+        barWidth: '25'
+      },
+      {
+        type: 'bar',
+        data: topCoursesOptions.series[1].data,
         label: {
           show: true,
           position: 'insideRight',
-          formatter: '{c}',
+          formatter: format,
           color: 'white',
           fontSize: 13,
         },
         itemStyle: {
-          color: '#1F3C88',
+          color: topCoursesOptions.series[1].itemStyle.color,
           borderRadius: [0, 5, 5, 0]
         },
         barWidth: '20'
@@ -415,10 +519,6 @@ export default class ChartsComponent {
     ],
     responsive: true
   };
-  }
-
-  ngAfterContentInit(){
-    this.updateActivePeiod("hour");
   }
 
   updateActivePeiod(name: string){
@@ -461,7 +561,6 @@ export default class ChartsComponent {
       ]
     };
   }
-
   setMonth(){
     const xLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const yValues = monthlyData.map(item => item.value);
@@ -479,62 +578,5 @@ export default class ChartsComponent {
     const yValues = hourlyData.map(item => item.value);
     return {xLabels,yValues};
   }
-
 }
-
-interface ChartData {
-  timestamp: Date;
-  value: number;
-}
-const monthlyData = [
-  { timestamp: new Date(2025, 0, 1), value: 120 },
-  { timestamp: new Date(2025, 1, 1), value: 95 },
-  { timestamp: new Date(2025, 2, 1), value: 140 },
-  { timestamp: new Date(2025, 3, 1), value: 170 },
-  { timestamp: new Date(2025, 4, 1), value: 120 },
-  { timestamp: new Date(2025, 5, 1), value: 100 },
-  { timestamp: new Date(2025, 6, 1), value: 160 },
-  { timestamp: new Date(2025, 7, 1), value: 70 },
-  { timestamp: new Date(2025, 8, 1), value: 80 },
-  { timestamp: new Date(2025, 9, 1), value: 140 },
-  { timestamp: new Date(2025, 10, 1), value: 110 },
-  { timestamp: new Date(2025, 11, 1), value: 150 },
-  { timestamp: new Date(2025, 12, 1), value: 50 }
-];
-const dailyData = [
-  { timestamp: new Date(2025, 4, 1), value: 30 },
-  { timestamp: new Date(2025, 4, 2), value: 60 },
-  { timestamp: new Date(2025, 4, 3), value: 50 },
-  { timestamp: new Date(2025, 4, 3), value: 20 },
-  { timestamp: new Date(2025, 4, 3), value: 100 },
-  { timestamp: new Date(2025, 4, 3), value: 60 },
-  { timestamp: new Date(2025, 4, 3), value: 80 }
-];
-
-const hourlyData = [
-  { timestamp: new Date(2025, 4, 18, 1), value: 10 },
-  { timestamp: new Date(2025, 4, 18, 2), value: 20 },
-  { timestamp: new Date(2025, 4, 18, 3), value: 30 },
-  { timestamp: new Date(2025, 4, 18, 4), value: 40 },
-  { timestamp: new Date(2025, 4, 18, 5), value: 50 },
-  { timestamp: new Date(2025, 4, 18, 6), value: 60 },
-  { timestamp: new Date(2025, 4, 18, 7), value: 70 },
-  { timestamp: new Date(2025, 4, 18, 8), value: 80 },
-  { timestamp: new Date(2025, 4, 18, 9), value: 90 },
-  { timestamp: new Date(2025, 4, 18, 10), value: 100 },
-  { timestamp: new Date(2025, 4, 18, 11), value: 110 },
-  { timestamp: new Date(2025, 4, 18, 12), value: 120 },
-  { timestamp: new Date(2025, 4, 18, 13), value: 130 },
-  { timestamp: new Date(2025, 4, 18, 14), value: 140 },
-  { timestamp: new Date(2025, 4, 18, 15), value: 150 },
-  { timestamp: new Date(2025, 4, 18, 16), value: 140 },
-  { timestamp: new Date(2025, 4, 18, 17), value: 130 },
-  { timestamp: new Date(2025, 4, 18, 18), value: 120 },
-  { timestamp: new Date(2025, 4, 18, 19), value: 110 },
-  { timestamp: new Date(2025, 4, 18, 20), value: 100 },
-  { timestamp: new Date(2025, 4, 18, 21), value: 90 },
-  { timestamp: new Date(2025, 4, 18, 22), value: 70 },
-  { timestamp: new Date(2025, 4, 18, 23), value: 80 },
-  { timestamp: new Date(2025, 4, 18, 24), value: 60 }
-];
 
