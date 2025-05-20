@@ -3,7 +3,7 @@ import { ChartComponent } from './chart/chart.component';
 import { DataComponent } from './data-component/data.component';
 import { color } from 'echarts/core';
 import { ECharts } from 'echarts';
-import { dailyData, hourlyData, monthlyData, topFamousCourses } from '../../data/chart.data';
+import { dailyData, hourlyData, monthlyData, topCoursesOnPerfomenceData, topFamousCourses } from '../../data/chart.data';
 
 @Component({
   selector: 'app-charts',
@@ -209,67 +209,9 @@ export default class ChartsComponent {
     ],
     responsive: true
   };
-  option = {
-    title: {
-      text: 'World Population'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      }
-    },
-    legend: {},
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'value',
-      show: false
-    },
-    yAxis: {
-      type: 'category',
-      data: ['INGLIZ TILI', 'ELEKTRON TUORAT', 'WEB DESIGN', 'SMM - Social Media Marketing\nvideo-o‘quv kursi', 'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'],
-      show: false,
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-          align: 'center',
-          fontSize: 12,
-          fontWeight: 600,
-          color: "black",
-          margin: -150
-        }
-    },
-    series: [
-      {
-        type: 'bar',
-        data: [18203, 23489, 29034, 104970, 131744],
-        label: {
-          show: true,
-          position: 'bottom',
-          formatter: '{b}',
-          color: 'black',
-          fontSize: 13,
-        },
-        itemStyle: {
-          color: '#1F3C88',
-          borderRadius: [4, 4, 4, 4]
-        },
-        barWidth: '20',
-      }
-    ]
-  };
   topCoursesOnPerfomenceOptions: any = {
   title: {
-    text: topFamousCourses.title,
+    text: topCoursesOnPerfomenceData.title,
     left: 'left',
     top: '5%',
     textStyle: {
@@ -289,7 +231,7 @@ export default class ChartsComponent {
   },
   yAxis: {
     type: 'category',
-    data: topFamousCourses.topCourserData.map(v =>v.name),
+    data: topCoursesOnPerfomenceData.topCourserData.map(v =>v.name),
     inverse: true,
     axisTick: { show: false },
     axisLine: { show: false },
@@ -304,14 +246,14 @@ export default class ChartsComponent {
   series: [
     {
       type: 'bar',
-      data: [12356, 9568, 7981, 3546, 3546],
+      data: topCoursesOnPerfomenceData.topCourserData.map(v=> v.value),
       label: {
         show: false,
         position: 'top',
         fontSize: 12,
         fontWeight: 'bold',
         color: '#000',
-        formatter: (params: any) => topFamousCourses.topCourserData.map(v =>v.value)
+        formatter: (params: any) => topCoursesOnPerfomenceData.topCourserData.map(v =>v.value)
       },
       itemStyle: {
         color: 'transparent'
@@ -321,7 +263,7 @@ export default class ChartsComponent {
     },
     {
       type: 'bar',
-      data: topFamousCourses.topCourserData.map(v =>v.value),
+      data: topCoursesOnPerfomenceData.topCourserData.map(v =>v.value),
       label: {
         show: true,
         position: 'insideRight',
@@ -476,7 +418,7 @@ export default class ChartsComponent {
     series: [
       {
         type: 'bar',
-        data: [12356, 9568, 7981, 3546, 3546],
+        data: topCoursesOptions.series[0].data,
         label: {
           show: false,
           position: 'top',
@@ -484,13 +426,7 @@ export default class ChartsComponent {
           fontWeight: 'bold',
           color: '#000',
           formatter: (params: any) => {
-            const labels = [
-              'INGLIZ TILI',
-              'ELEKTRON TUORAT',
-              'WEB DESIGN',
-              'SMM - Social Media\nMarketing video-o‘quv kursi',
-              'UTIMOIY MEDIA MARKETING\no‘quv qo‘llanma'
-            ];
+            const labels = topCoursesOptions.yAxis.data;
             return labels[params.dataIndex];
           }
         },

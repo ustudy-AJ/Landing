@@ -4,12 +4,12 @@
     <app-chart [title]="'Статистика по возрасту'" [options]="barChartOptions"  [styleClass]="'w-full h-[430px] shadow'"></app-chart>
   </div>
   <div class="relative">
-    <div class="absolute grid grid-cols-3 gap-[10px] left-[43%]">
+    <div class="absolute grid grid-cols-3 gap-[10px] left-[20%] sm:left-[43%] top-[10px]">
       <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('month')">Month</button>
       <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('day')">Days</button>
       <button class="border border-[#6E62E5] hover:bg-[#6E62E5] hover:text-[white] py-[5px] px-[21px] rounded-[50px] cursor-pointer" (click)="updateActivePeiod('hour')">Hour</button>
     </div>
-    <app-chart  [options]="activePeriodChartOptions" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
+    <app-chart  [options]="activePeriodChartOptions" [styleClass]="'w-full h-[430px] shadow pt-[50px]'"></app-chart>
   </div>
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-[20px]">
     <app-chart [options]="topFamousCoursesOptions" [styleClass]="'w-full h-[430px] shadow'"></app-chart>
