@@ -18,6 +18,10 @@ export const routes: Routes = [
         loadComponent: ()=> import("./components/statistic/statistic.component")
       },
       {
+        path: "statistic2",
+        loadComponent: ()=> import("./components/statistic-2/statistic-2.component")
+      },
+      {
         path: "charts",
         loadComponent: ()=> import("./components/charts/charts.component")
       },

@@ -1,0 +1,40 @@
+
+
+<div class="w-full p-[20px]" >
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-[16px] ">
+    <div class="py-[24px] pr-[14px] pl-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold text-[14px] lg:text-[16px]">{{hasOnListStatistic.title}}</p>
+        </div>
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
+      </div>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[36px] ">{{calculatePercent(hasOnListStatistic.allUsers, hasOnListStatistic.usersOnList)}}</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <p class="text-[#6A628C] text-[13px]">{{hasOnListStatistic.text}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="py-[24px] pr-[14px] pl-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold text-[14px] lg:text-[16px]">{{neighborhoodStatistic.title}}</p>
+        </div>
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
+      </div>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[36px] ">{{neighborhoodStatistic.value}}</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <p class="text-[#6A628C] text-[13px]">{{neighborhoodStatistic.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
