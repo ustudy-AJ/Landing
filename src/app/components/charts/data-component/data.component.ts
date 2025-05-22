@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 
 @Component({
   selector: 'app-data',
@@ -10,4 +10,9 @@ export class DataComponent {
   @Input() title: String | undefined;
   @Input() data: String | undefined;
   @Input() styleClass!: string;
+
+  @HostListener("window:resize")
+  onResize(){
+    console.log("Ekran razmerini o`zgratirdi");
+  };
 }

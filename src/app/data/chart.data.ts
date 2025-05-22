@@ -104,3 +104,17 @@ export const topFamousCourses: TopCourses =
   ]
 }
 
+abstract class Animal{
+
+
+  public sound(){
+
+  }
+}
+class B extends Animal{
+  constructor(){
+    super();
+  }
+
+}
+

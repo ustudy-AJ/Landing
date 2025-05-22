@@ -1,0 +1,146 @@
+getMobile(topCoursesOptions: any, format: string | any){
+    format = format==="procent" ? (params: { value: number; }) => Math.floor(params.value / 15000 * 100) + '%'
+        : format == "text" ? "{b}"
+        : format == "number" ? "{c}": "";
+
+    let formatter = (params: any) => {
+          const labels = topCoursesOptions.yAxis.data;
+          return labels[params.dataIndex];
+        }
+
+    return {
+    ...structuredClone({
+      ...topCoursesOptions,
+      series: topCoursesOptions.series.map((s: any) => ({
+        ...s,
+        label: { ...s.label, formatter: undefined }
+      }))}),
+    yAxis:
+    // {
+    //   type: 'category',
+    //   inverse: true,
+    //   data: topCoursesOptions.yAxis.data,
+    //   show: false,
+    //   axisLabel: {
+    //     show: false,
+    //   }
+    // }
+    this.createYAxis("category",topCoursesOptions.yAxis.data, true, false, false),
+    grid: this.createGrid("10%"),
+    series: [
+    //   {
+    //   type: 'bar',
+    //   data: topCoursesOptions.series[0].data,
+    //   label: {
+    //     show: true,
+    //     position: 'insideLeft',
+    //     fontSize: 12,
+    //     fontWeight: 'bold',
+    //     color: '#000',
+    //     formatter: formatter
+    //   },
+    //   itemStyle: {
+    //     color: 'transparent'
+    //   },
+    //   barWidth: '25'
+    // },
+    this.createSeriesItem('bar',topCoursesOptions.series[0].data, true, "insideLeft", "#000", formatter, 25, "transparent"),
+      // {
+      //   type: 'bar',
+      //   data: topCoursesOptions.series[1].data,
+      //   label: {
+      //     ...topCoursesOptions.series[1].label,
+      //     formatter: format,
+      //   },
+      //   itemStyle: {
+      //     color: topCoursesOptions.series[1].itemStyle.color,
+      //     borderRadius: [0, 5, 5, 0]
+      //   },
+      //   barWidth: '20'
+      // }
+      this.createSeriesItem("bar",topCoursesOptions.series[1].data,true, "insideRight", "#fff",format,20,topCoursesOptions.series[1].itemStyle.color)
+    ],
+    responsive: true
+    };
+  }
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////
+
+
+
+
+getDesktop(topCoursesOptions: any, format: any){
+    format = format==="procent" ? (params: { value: number; }) => Math.floor(params.value / 15000 * 100) + '%'
+        : format == "text" ? "{b}"
+        : format == "number" ? "{c}": "";
+    return {
+      ...structuredClone({
+        ...topCoursesOptions,
+        series: topCoursesOptions.series.map((s: any) => ({
+          ...s,
+          label: { ...s.label, formatter: undefined }
+        }))
+    }),
+    grid: {
+      left: '-10%',
+      bottom: '10%',
+      top: '20%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      show: false
+    },
+    yAxis: {
+      type: 'category',
+      data: topCoursesOptions.yAxis.data,
+      inverse: true,
+      axisTick: { show: false },
+      axisLine: { show: false },
+      axisLabel: {
+        align: 'left',
+        margin: 230,
+        fontSize: 12,
+        fontWeight: 600,
+        color: "black",
+      }
+    },
+    series: [
+      {
+        type: 'bar',
+        data: topCoursesOptions.series[0].data,
+        label: {
+          show: false,
+        },
+        itemStyle: {
+          color: 'transparent'
+        }
+      },
+      {
+        type: 'bar',
+        data: topCoursesOptions.series[1].data,
+        label: {
+          show: true,
+          position: 'insideRight',
+          formatter: format,
+          color: 'white',
+          fontSize: 13,
+        },
+        itemStyle: {
+          color: topCoursesOptions.series[1].itemStyle.color,
+          borderRadius: [0, 5, 5, 0]
+        },
+        barWidth: '20'
+      }
+    ],
+    responsive: true
+  };
+  }

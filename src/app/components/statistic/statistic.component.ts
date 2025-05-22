@@ -17,22 +17,67 @@ interface Card {
   styleUrl: './statistic.component.scss'
 })
 export default class StatisticComponent {
-  cards: Card[] = [
-      {
-        title: 'VACANCY.ARGOS.UZ',
-        subtitle:
-          'Yagona portal – davlat organlari tomonidan taqdim etiladigan yagona nuqtasi',
-        link: 'https://vacancy.argos.uz',
-        icon: '/assets/argos-icon.svg',
-        buttonText: 'Book on Viator',
-      },
-      {
-        title: 'HRM.ARGOS.UZ',
-        subtitle:
-          'Yagona portal – davlat organlari tomonidan taqdim etiladigan yagona nuqtasi',
-        link: 'https://hrm.argos.uz',
-        icon: '/assets/argos-icon.svg',
-        buttonText: 'Book on Viator',
-      },
-    ];
+  userStatistic = {
+    title: "Всего пользователей",
+    value: 2420,
+    proccent: "+ 40%",
+    text: "чем прошлый месяц"
+  }
+  coursesStatistic = {
+    title: "Всего курсов",
+    value: 18,
+    proccent: "+ 40%",
+    text: "чем прошлый месяц"
+  }
+  averageTimeStatistic = {
+    title: "Среднее время прохождения",
+    date: new Date(1),
+    text: "От старта первого курса до получения сертификата"
+  }
+  participatingSchoolsStatistic = {
+    title: "Учащийхся школ",
+    value: "65%",
+    text: "Процент от общего числа пользователей"
+  }
+
+  ngOnInit(){
+
+    let date = new Date();
+
+    date.setDate(date.getDate()+2);
+    date.setHours(date.getHours()+18);
+    date.setMinutes(date.getMinutes()+32);
+
+    this.averageTimeStatistic.date = date;
+
+    // let milliSeconds = date.getTime() - new Date().getTime();
+    // let day = Math.floor(milliSeconds/1000/60/60/24);
+    // let hours = Math.floor(milliSeconds/1000/60/60%24);
+    // let minutes = Math.floor(milliSeconds/1000/60%60);
+
+    // console.log(day);
+    // console.log(hours);
+    // console.log(minutes);
+
+
+    // console.log(new Date(10));
+
+  }
+
+  getDay(date: Date){
+    let milliSeconds = date.getTime() - new Date().getTime();
+    let day = Math.floor(milliSeconds/1000/60/60/24);
+
+    return day;
+  }
+  getHours(date: Date){
+    let milliSeconds = date.getTime() - new Date().getTime();
+    let hours = Math.floor(milliSeconds/1000/60/60%24);
+    return hours;
+  }
+  getMinutes(date: Date){
+    let milliSeconds = date.getTime() - new Date().getTime();
+    let minutes = Math.floor(milliSeconds/1000/60%60);
+    return minutes;
+  }
 }

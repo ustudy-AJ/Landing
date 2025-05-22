@@ -1,90 +1,82 @@
 
 
-<div class="flex flex-col gap-[24px] pt-[50px] pb-[100px] ">
-  <div class="flex justify-center ">
-    <p class="text-[40px] font-medium font-['Poppins']">Statistika</p>
-  </div>
-
-
-  <div class="flex gap-[50px] justify-center pt-[80px] flex-wrap">
-    <div class="flex flex-col items-center gap-[16px]">
-      <img src="/icons/headdress_icon.svg" alt="">
-      <div class="flex flex-col items-center gap-[24px] px-[86px]">
-        <p class="font-semibold text-9xl leading-[128px] text-[#1C7AB0] font-['Inter']">50+</p>
-        <p class="font-medium text-lg text-[#292D3266] font-['Poppins']">Kurslar</p>
+<div class="w-full p-[20px]" >
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[16px] ">
+    <div class="py-[24px] pl-[14px] pr-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold max-[1360px]:text-[14px]">{{userStatistic.title}}</p>
+        </div>
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
+      </div>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[30px] xl:text-[36px] ">{{userStatistic.value}}</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <img src="./assets/icons/arrow-up.svg" alt="">
+          <p class="text-[#027A48] text-[14px] font-semibold">{{userStatistic.proccent}}</p>
+          <p class="text-[#6A628C] text-[13px]">{{userStatistic.text}}</p>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col items-center gap-[16px] px-[86px]">
-      <img src="/icons/people_icon.svg" alt="">
-      <div class="flex flex-col items-center gap-[24px]">
-        <p class="font-semibold text-9xl leading-[128px] text-[#1C7AB0] font-['Inter']">100+</p>
-        <p class="font-medium text-lg text-[#292D3266] font-['Poppins']">Foydalanuvchilar</p>
+
+    <div class="py-[24px] pl-[14px] pr-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold max-[1360px]:text-[14px]">{{coursesStatistic.title}}</p>
+        </div>
+
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
+      </div>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[30px] xl:text-[36px] ">{{coursesStatistic.value}}</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <img src="./assets/icons/arrow-up.svg" alt="">
+          <p class="text-[#027A48] text-[14px] font-semibold">{{coursesStatistic.proccent}}</p>
+          <p class="text-[#6A628C] text-[13px]">{{coursesStatistic.text}}</p>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col items-center gap-[16px] px-[86px]">
-      <img src="/icons/certificate_icon.svg" alt="">
-      <div class="flex flex-col items-center gap-[24px]">
-        <p class="font-semibold text-9xl leading-[128px] text-[#1C7AB0] font-['Inter']">10+</p>
-        <p class="font-medium text-lg text-[#292D3266] font-['Poppins']">Sertifikatlar</p>
+    <div class="py-[24px] pl-[14px] pr-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold max-[1360px]:text-[14px]">{{averageTimeStatistic.title}}</p>
+        </div>
+
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
+      </div>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[30px] xl:text-[36px] ">{{getDay(averageTimeStatistic.date)}}д : {{getHours(averageTimeStatistic.date)}}ч : {{getMinutes(averageTimeStatistic.date)}}м</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <p class="text-[#6A628C] text-[13px]">{{averageTimeStatistic.text}}</p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <div class="py-[24px] pl-[14px] pr-[20px] rounded-[24px] shadow-[0_6px_32.6px_0_#1518371C]">
+      <div class="flex justify-between">
+        <div class="flex items-center gap-[8px]">
+          <img src="./assets/icons/dot.svg" alt="">
+          <p class="text-[#3620B7] font-semibold max-[1360px]:text-[14px]">{{participatingSchoolsStatistic.title}}</p>
+        </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
-<div class="flex justify-center px-[40px]">
-  <div class="flex grid-cols-1 sm:grid-cols-2 gap-6 flex-wrap">
-    <div
-      *ngFor="let card of cards"
-      class="bg-blue-50 rounded-2xl p-6 flex flex-col items-center text-center"
-    >
-      <div class="flex items-center justify-center mb-4 w-full min-w-0 space-x-3">
-        <img
-          [src]="card.icon"
-          alt="{{ card.title }} logo"
-          class="w-12 h-12 flex-shrink-0"
-        />
-        <h3
-          class="font-semibold text-[#45556C] text-2xl md:text-[32px]
-                 whitespace-nowrap"
-        >
-          {{ card.title }}
-        </h3>
+        <button class="cursor-pointer">
+          <img src="./assets/imgs/image.png" alt="">
+        </button>
       </div>
-
-      <p class="text-gray-600 mb-6 text-lg">
-        {{ card.subtitle }}
-      </p>
-
-      <a
-        [href]="card.link"
-        target="_blank"
-        class="inline-flex items-center bg-[#1C7AB0] text-white font-medium py-2 px-4 rounded-full transition"
-      >
-        {{ card.buttonText }}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 ml-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
+      <div class="mt-[10px]">
+        <p class="font-bold text-[30px] xl:text-[36px] ">{{participatingSchoolsStatistic.value}}</p>
+        <div class="mt-[10px] flex items-center gap-[4px]">
+          <p class="text-[#6A628C] text-[13px]">{{participatingSchoolsStatistic.text}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
