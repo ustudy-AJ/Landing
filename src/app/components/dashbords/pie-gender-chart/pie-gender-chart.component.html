@@ -1,0 +1,56 @@
+<div #chartContainer class="p-[20px] flex flex-col gap-[20px] bg-[white] rounded-[16px] {{styleClass}}">
+  <div class="w-full flex justify-center">
+    <p class="font-semibold text-[18px]">{{title}}</p>
+  </div>
+  <div class="w-full h-full relative grid grid-cols-2 items-center">
+    <div class="absolute flex flex-col items-center justify-center w-[50%] h-[100%]">
+      <div class="rounded-[50%] flex flex-col items-center justify-center">
+        <p class="text-center text-[18px] font-semibold text-[#686082BF]">{{totalText}}</p>
+        <p class="text-center text-[28px] font-bold">{{total}}</p>
+      </div>
+    </div>
+    <div echarts [options]="options" class="chart" style="height: 100%;"></div>
+    <div class="grid grid-cols-3">
+      <div class="flex flex-col gap-[21px]">
+        <p class="text-[12px] font-semibold text-[#8E84A3]">Пол</p>
+        <div class="flex gap-[10px]">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.921875" y="0.223206" width="24.0528" height="24.0528" rx="8.18819" fill="url(#paint0_linear_234_7034)"/>
+            <defs>
+            <linearGradient id="paint0_linear_234_7034" x1="-2.1487" y1="-6.94146" x2="12.9483" y2="24.276" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#8353D5"/>
+            <stop offset="1" stop-color="#1D96EF"/>
+            </linearGradient>
+            </defs>
+            </svg>
+
+          <p class="font-semibold">Мужчин</p>
+        </div>
+        <div class="flex gap-[10px]">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.921875" y="0.083252" width="24.0528" height="24.0528" rx="8.18819" fill="url(#paint0_linear_234_7041)"/>
+            <defs>
+            <linearGradient id="paint0_linear_234_7041" x1="-1.38105" y1="-5.54613" x2="12.9483" y2="24.1361" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DD1C69"/>
+            <stop offset="0.542888" stop-color="#F65380"/>
+            <stop offset="1" stop-color="#F665A8"/>
+            </linearGradient>
+            </defs>
+          </svg>
+
+          <p class="font-semibold">Женщин</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-[21px]">
+        <p class="text-[12px] font-semibold text-[#8E84A3]">Количество</p>
+        <p class="font-semibold">458 268</p>
+        <p class="font-semibold">358 418</p>
+      </div>
+      <div class="flex flex-col gap-[21px]">
+        <p class="text-[12px] font-semibold text-[#8E84A3]">Процент</p>
+        <p class="font-semibold">56%</p>
+        <p class="font-semibold">42%</p>
+      </div>
+    </div>
+  </div>
+</div>
