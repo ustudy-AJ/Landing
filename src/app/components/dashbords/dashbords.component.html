@@ -1,0 +1,14 @@
+<div class="p-[40px]">
+
+  <div class="grid grid-cols-3 gap-[26px] mb-[40px]">
+    <app-pie-chart [title]="'Пользователей начало обучение'" [options]="genderOptions" [styleClass]="'w-full h-[345px] shadow-[0_0_10px_#00000040]'" [total]="'78%'" [totalText]="'1 590'"></app-pie-chart>
+    <app-pie-chart [title]="'Цель 1 000 000 сертификатов'" [options]="purposeOfCertificatesOptions" [styleClass]="'w-full h-[345px] shadow-[0_0_10px_#00000040]'" [total]="'78%'" [totalText]="'780,200'"></app-pie-chart>
+    <app-pie-chart [title]="'Средний результат'" [options]="averageResultOptions" [styleClass]="'w-full h-[345px] shadow-[0_0_10px_#00000040]'" [total]="'78%'" [totalText]="'4,8'"></app-pie-chart>
+  </div>
+
+  <div class="grid grid-cols-2 gap-[14px]">
+    <app-racing-bar-chart [title]="'Средний результат'" [options]="uniqueUsersByRegionOptions" [styleClass]="'w-full h-[510px] shadow-[0_0_10px_#00000040]'" [total]="'78%'" [totalText]="'4,8'"></app-racing-bar-chart>
+    <app-racing-bar-chart [title]="'Средний результат'" [options]="certificatesByRegionOptions" [styleClass]="'w-full h-[510px] shadow-[0_0_10px_#00000040]'" [total]="'78%'" [totalText]="'4,8'"></app-racing-bar-chart>
+  </div>
+
+</div>

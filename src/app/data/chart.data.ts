@@ -103,18 +103,46 @@ export const topFamousCourses: TopCourses =
     },
   ]
 }
-
-abstract class Animal{
-
-
-  public sound(){
-
-  }
-}
-class B extends Animal{
-  constructor(){
-    super();
-  }
-
+export const uniqueUsersByRegion: TopCourses =
+{
+  title: "Количество уникальных пользователей по регионам",
+  topCourserData: [
+    {
+      name: "Ташкентская обл",
+      value: 420
+    },
+    {
+      name: "Самаркандская обл",
+      value: 400
+    },
+    {
+      name: "Андижанская обл",
+      value: 355
+    },
+    {
+      name: "Кашкадарьинская обл",
+      value: 325
+    },
+    {
+      name: "Хорезмская обл",
+      value: 310
+    },
+    {
+      name: "Сурхандарьинская обл",
+      value: 250
+    },
+    {
+      name: "Хорезмская обл",
+      value: 230
+    },
+    {
+      name: "Сырдарьинская обл",
+      value: 200
+    },
+    {
+      name: "Рес. Каракалпакстан обл",
+      value: 100
+    },
+  ]
 }
 

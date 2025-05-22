@@ -25,6 +25,10 @@ export const routes: Routes = [
         path: "charts",
         loadComponent: ()=> import("./components/charts/charts.component")
       },
+      {
+        path: "dashboard",
+        loadComponent: ()=> import("./components/dashbords/dashbords.component")
+      },
     ]
   }
 ];

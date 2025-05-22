@@ -41,7 +41,6 @@ export default class StatisticComponent {
   }
 
   ngOnInit(){
-
     let date = new Date();
 
     date.setDate(date.getDate()+2);
@@ -49,19 +48,6 @@ export default class StatisticComponent {
     date.setMinutes(date.getMinutes()+32);
 
     this.averageTimeStatistic.date = date;
-
-    // let milliSeconds = date.getTime() - new Date().getTime();
-    // let day = Math.floor(milliSeconds/1000/60/60/24);
-    // let hours = Math.floor(milliSeconds/1000/60/60%24);
-    // let minutes = Math.floor(milliSeconds/1000/60%60);
-
-    // console.log(day);
-    // console.log(hours);
-    // console.log(minutes);
-
-
-    // console.log(new Date(10));
-
   }
 
   getDay(date: Date){
