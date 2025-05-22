@@ -22,4 +22,6 @@ export default class Statistic2Component {
   calculatePercent(all: number, current: number){
     return Math.floor(current / all * 100) + '%';
   }
+
+
 }
