@@ -1,4 +1,4 @@
-import { TopCourses } from "../interfaces/chart.interface";
+import { BarChart, PieChart, PieGenderChart, RacingBarChart, TopCourses } from "../interfaces/chart.interface";
 
 export const monthlyData = [
   { timestamp: new Date(2025, 0, 1), value: 120 },
@@ -103,10 +103,55 @@ export const topFamousCourses: TopCourses =
     },
   ]
 }
-export const uniqueUsersByRegion: TopCourses =
+
+
+
+export const uniqueUsersByRegionData: RacingBarChart =
 {
   title: "Количество уникальных пользователей по регионам",
-  topCourserData: [
+  values: [
+    {
+      name: "Ташкентская обл",
+      value: 420
+    },
+    {
+      name: "Самаркандская обл",
+      value: 400
+    },
+    {
+      name: "Андижанская обл",
+      value: 355
+    },
+    {
+      name: "Кашкадарьинская обл",
+      value: 325
+    },
+    {
+      name: "Хорезмская обл",
+      value: 310
+    },
+    {
+      name: "Сурхандарьинская обл",
+      value: 250
+    },
+    {
+      name: "Хорезмская обл",
+      value: 230
+    },
+    {
+      name: "Сырдарьинская обл",
+      value: 200
+    },
+    {
+      name: "Рес. Каракалпакстан обл",
+      value: 100
+    },
+  ]
+}
+export const certificatesByRegionData: RacingBarChart =
+{
+  title: "Количество сертификатов по регионам",
+  values: [
     {
       name: "Ташкентская обл",
       value: 420
@@ -146,3 +191,39 @@ export const uniqueUsersByRegion: TopCourses =
   ]
 }
 
+
+
+export const barStatisticGenderData: BarChart =
+{
+  title: "Статистика по полу",
+  statisticNames: ['0-16', '16-25', '25-35', '35-45', '45-55', '55-60'],
+  husbandsValues: [550000, 270000, 700000, 780000, 600000, 240000],
+  wifesValues: [480000, 140000, 270000, 730000, 900000, 580000]
+}
+
+
+
+export const startCoursesData: PieChart = {
+  title: "Пользователей начало обучение",
+  totalValue: 2900,
+  currentValue: 1590,
+}
+
+export const purposeOfCertificatesData: PieChart = {
+  title: "Цель 1 000 000 сертификатов",
+  totalValue: 1000000,
+  currentValue: 780200,
+}
+
+export const averageResultData: PieChart = {
+  title: "Средний результат",
+  totalValue: 7,
+  currentValue: 4.8,
+}
+
+
+export const pieStatisticGenderData: PieGenderChart = {
+  title: "Средний результат",
+  menValue: 458268,
+  womenValue: 358418,
+}

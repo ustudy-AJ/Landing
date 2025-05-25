@@ -1,18 +1,19 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
-import { ECharts, EChartsOption } from 'echarts';
+
+import { TopCourses } from '../../../interfaces/chart.interface';
 import { NgxEchartsDirective } from 'ngx-echarts';
-import { RacingBarChart, RacingBarChartValue } from '../../../interfaces/chart.interface';
+import { color } from 'echarts';
 
 
 @Component({
-  selector: 'app-racing-bar-chart',
+  selector: 'app-bar-chart',
   imports: [NgxEchartsDirective],
-  templateUrl: './racing-bar-chart.component.html',
-  styleUrl: './racing-bar-chart.component.scss'
+  templateUrl: './bar-chart.component.html',
+  styleUrl: './bar-chart.component.scss'
 })
-export class RacingBarChartComponent {
+export class BarChartComponent {
   @Input() styleClass!: string;
-  @Input() data!: RacingBarChart;
+  @Input() data!: TopCourses;
   @Input() colorIndex: number = 0;
 
   option!: any;
@@ -38,7 +39,7 @@ export class RacingBarChartComponent {
     return {
       title: {},
       grid: {
-        left: '-110',
+        left: '-180',
         right: '4%',
         bottom: '10%',
         top: '0%',
@@ -50,7 +51,7 @@ export class RacingBarChartComponent {
       },
       yAxis: {
         type: 'category',
-        data: this.data.values.map(v =>v.name),
+        data: this.data.topCourserData.map(v =>v.name),
         show: !this.isMobile,
         inverse: true,
         axisTick: { show: false },
@@ -60,18 +61,18 @@ export class RacingBarChartComponent {
           nameTextStyle: {
             align: "center"
           },
-          margin: this.isMobile ? 0: 200,
-          fontSize: 12,
-          color: "black",
+          margin: this.isMobile ? 0: 220,
+          fontSize: 14,
+          color: "#94A3B8",
         }
       },
       series: [
         {
           type: 'bar',
-          data: this.data.values.map(v=> v.value),
+          data: this.data.topCourserData.map(v=> v.value),
           label: {
             show: this.isMobile,
-            position: 'innerLeft',
+            position: 'insideLeft',
             fontSize: 12,
             color: '#000',
             formatter: "{b}"
@@ -79,36 +80,25 @@ export class RacingBarChartComponent {
           itemStyle: {
             color: 'transparent'
           },
-          barGap: '-50%',
-          barWidth: '25'
+          barGap: '0%',
+          barWidth: '20'
         },
         {
           type: 'bar',
-          data: this.data.values.map(v =>v.value),
+          data: this.data.topCourserData.map(v =>v.value),
           label: {
-            show: false,
+            show: true,
+            position: 'insideRight',
+            fontSize: 14,
+            fontWeight: "medium",
+            color: "white",
+            distance: 15
           },
           itemStyle: {
-            color: {
-              type: 'linear',
-              x: 0,
-              y: 0,
-              x2: 1,
-              y2: 0,
-              colorStops: [
-                {
-                  offset: 0,
-                  color: this.gradientColors[this.colorIndex][0]
-                },
-                {
-                  offset: 1,
-                  color: this.gradientColors[this.colorIndex][1]
-                }
-              ]
-            },
-            borderRadius: 2.5
+            color: "#94A3B8",
+            borderRadius: 12
           },
-          barWidth: '20',
+          barWidth: '40',
         }
       ]
     };

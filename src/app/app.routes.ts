@@ -29,6 +29,10 @@ export const routes: Routes = [
         path: "dashboard",
         loadComponent: ()=> import("./components/dashbords/dashbords.component")
       },
+      {
+        path: "dashboard2",
+        loadComponent: ()=> import("./components/dashboard-2/dashboard-2.component")
+      },
     ]
   }
 ];

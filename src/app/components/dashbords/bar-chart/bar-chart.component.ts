@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
-import * as echarts from 'echarts';
 
 import { NgxEchartsDirective } from 'ngx-echarts';
+import { BarChart } from '../../../interfaces/chart.interface';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,29 +10,118 @@ import { NgxEchartsDirective } from 'ngx-echarts';
   styleUrl: './bar-chart.component.scss'
 })
 export class BarChartComponent {
-    @Input() title: String | undefined;
-    @Input() options: any;
-    @Input() styleClass!: string;
-    @Input() total!: string;
-    @Input() totalText!: string;
+  @Input() styleClass!: string;
+  @Input() data!: BarChart;
+  @Input() colorIndex: number = 0;
 
-    chartInstance: echarts.ECharts | null = null;
+  option!: any;
+  private isMobile: boolean = false;
+  gradientColors = [
+    ["#8353D5","#4129C8"],
+    ["#8353D5","#ED589D"],
+    ["#4C94FF","#B158ED"],
+  ]
 
-    @ViewChild('chartContainer', { static: true }) chartContainer!: ElementRef;
 
-    ngAfterViewInit(): void {
-      const chartDom = this.chartContainer.nativeElement.querySelector('.chart');
-      this.chartInstance = echarts.init(chartDom);
-      this.chartInstance.setOption(this.options);
-    }
+  @HostListener('window:resize')
+  onResize() {
+    console.log(window.innerWidth);
 
-    @HostListener('window:resize')
-    onResize() {
-      if (this.chartInstance) {
-        this.chartInstance.resize();
-      }
-    }
-    ngOnDestroy(): void {
-      this.chartInstance?.dispose();
-    }
+    this.isMobile = window.innerWidth < 768;
+    this.option = this.getOption();
+  }
+
+  ngOnInit(){
+    this.option = this.getOption();
+  }
+
+  getOption(){
+    return {
+      legend: {
+        show: true,
+        data: ["Муж", "Жен"],
+        orient: 'horizontal',
+        bottom: 0
+      },
+      xAxis: {
+        type: 'category',
+        data: this.data.statisticNames,
+        axisTick: { alignWithLabel: true },
+        axisLabel: {
+          color: '#000',
+          fontSize: 12,
+          align: 'center',
+        }
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          color: '#000',
+          fontSize: 12,
+          align: 'right',
+        }
+      },
+      grid: {
+        left: '0%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: !this.isMobile,
+      },
+      series: [
+        {
+          name: "Муж",
+          type: 'bar',
+          data: this.data.husbandsValues,
+          barWidth: '13',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: '#8348EA'
+                },
+                {
+                  offset: 1,
+                  color: '#1D96EF'
+                }
+              ]
+            },
+            borderRadius: 4,
+          },
+        },
+        {
+          name: "Жен",
+          type: 'bar',
+          data: this.data.wifesValues,
+          barWidth: '13',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: '#EE2B79'
+                },
+                {
+                  offset: 1,
+                  color: '#F665A8'
+                }
+              ]
+            },
+            borderRadius: 4,
+          },
+        },
+      ],
+    };
+  }
+
 }

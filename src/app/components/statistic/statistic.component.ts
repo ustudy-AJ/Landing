@@ -12,7 +12,7 @@ interface Card {
 
 @Component({
   selector: 'app-statistic',
-  imports: [NgFor],
+  imports: [  ],
   templateUrl: './statistic.component.html',
   styleUrl: './statistic.component.scss'
 })
