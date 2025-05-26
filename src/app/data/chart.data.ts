@@ -252,7 +252,7 @@ export const topFamousCoursesRu: TopCourses =
       value: 3546
     },
     {
-      name: "Учебник по маркетингу в социальных сетях",
+      name: "Учебник по маркетингу\nв социальных сетях",
       value: 3546
     },
   ]
