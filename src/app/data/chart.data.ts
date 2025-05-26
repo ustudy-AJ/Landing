@@ -227,3 +227,33 @@ export const pieStatisticGenderData: PieGenderChart = {
   menValue: 458268,
   womenValue: 358418,
 }
+
+
+
+
+export const topFamousCoursesRu: TopCourses =
+{
+  title: "Курсы по популярности",
+  topCourserData: [
+    {
+      name: "Английский язык",
+      value: 12356
+    },
+    {
+      name: "Электронная коммерция",
+      value: 9568
+    },
+    {
+      name: "Веб дизайн",
+      value: 7981
+    },
+    {
+      name: "Видеокурс по маркетингу\nв социальных сетях",
+      value: 3546
+    },
+    {
+      name: "Учебник по маркетингу в социальных сетях",
+      value: 3546
+    },
+  ]
+}

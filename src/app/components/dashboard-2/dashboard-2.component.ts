@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { StatisticBlockComponent } from './statistic-block/statistic-block.component';
-import { topFamousCourses } from '../../data/chart.data';
+import { topFamousCoursesRu } from '../../data/chart.data';
 import { TopCourses } from '../../interfaces/chart.interface';
 
 @Component({
@@ -11,5 +11,5 @@ import { TopCourses } from '../../interfaces/chart.interface';
   styleUrl: './dashboard-2.component.scss'
 })
 export default class Dashboard2Component {
-  barStatisticOfCourses:TopCourses  = topFamousCourses;
+  barStatisticOfCourses:TopCourses  = topFamousCoursesRu;
 }
