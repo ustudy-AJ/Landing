@@ -39,7 +39,7 @@ export class BarChartComponent {
     return {
       title: {},
       grid: {
-        left: '-270',
+        left: '-150',
         right: '4%',
         bottom: '10%',
         top: '0%',
