@@ -1,4 +1,4 @@
-import { BarChart, PieChart, PieGenderChart, RacingBarChart, TopCourses } from "../interfaces/chart.interface";
+import { BarChart, LineChart, PieChart, PieGenderChart, RacingBarChart, TopCourses } from "../interfaces/chart.interface";
 
 export const monthlyData = [
   { timestamp: new Date(2025, 0, 1), value: 120 },
@@ -229,8 +229,6 @@ export const pieStatisticGenderData: PieGenderChart = {
 }
 
 
-
-
 export const topFamousCoursesRu: TopCourses =
 {
   title: "Курсы по популярности",
@@ -255,5 +253,65 @@ export const topFamousCoursesRu: TopCourses =
       name: "Учебник по маркетингу\nв социальных сетях",
       value: 3546
     },
+  ]
+}
+
+
+export const siteUsersStatisticData: LineChart = {
+  title: "Посещение сайта",
+  values: [
+    {
+      name: "Пользователи",
+      values: [
+        { timestamp: new Date(2025, 0, 1), value: 120 },
+        { timestamp: new Date(2025, 0, 1), value: 120 },
+        { timestamp: new Date(2025, 1, 1), value: 95 },
+        { timestamp: new Date(2025, 2, 1), value: 140 },
+        { timestamp: new Date(2025, 3, 1), value: 170 },
+        { timestamp: new Date(2025, 4, 18), value: 120 },
+        { timestamp: new Date(2025, 4, 27), value: 10 },
+        { timestamp: new Date(2025, 4, 26), value: 70 },
+        { timestamp: new Date(2025, 4, 28), value: 120 },
+        { timestamp: new Date(2025, 4, 29), value: 10 },
+        { timestamp: new Date(2025, 4, 25), value: 70 },
+        { timestamp: new Date(2025, 5, 1), value: 100 },
+        { timestamp: new Date(2025, 6, 1), value: 160 },
+        { timestamp: new Date(2025, 7, 1), value: 70 },
+        { timestamp: new Date(2025, 8, 1), value: 80 },
+        { timestamp: new Date(2025, 9, 1), value: 140 },
+        { timestamp: new Date(2025, 10, 1), value: 110 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 12, 1), value: 50 }
+      ],
+    },
+    {
+      name: "Сертификаты",
+      values: [
+        { timestamp: new Date(2025, 0, 1), value: 120 },
+        { timestamp: new Date(2025, 0, 1), value: 120 },
+        { timestamp: new Date(2025, 1, 1), value: 95 },
+        { timestamp: new Date(2025, 2, 1), value: 140 },
+        { timestamp: new Date(2025, 3, 1), value: 170 },
+        { timestamp: new Date(2025, 4, 18), value: 120 },
+        { timestamp: new Date(2025, 4, 27), value: 20 },
+        { timestamp: new Date(2025, 4, 26), value: 90 },
+        { timestamp: new Date(2025, 5, 1), value: 100 },
+        { timestamp: new Date(2025, 6, 1), value: 160 },
+        { timestamp: new Date(2025, 7, 1), value: 70 },
+        { timestamp: new Date(2025, 8, 1), value: 80 },
+        { timestamp: new Date(2025, 9, 1), value: 140 },
+        { timestamp: new Date(2025, 10, 1), value: 110 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 11, 1), value: 150 },
+        { timestamp: new Date(2025, 12, 1), value: 50 }
+      ],
+    }
   ]
 }

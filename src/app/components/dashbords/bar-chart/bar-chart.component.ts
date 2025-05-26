@@ -12,31 +12,26 @@ import { BarChart } from '../../../interfaces/chart.interface';
 export class BarChartComponent {
   @Input() styleClass!: string;
   @Input() data!: BarChart;
-  @Input() colorIndex: number = 0;
 
   option!: any;
   private isMobile: boolean = false;
-  gradientColors = [
-    ["#8353D5","#4129C8"],
-    ["#8353D5","#ED589D"],
-    ["#4C94FF","#B158ED"],
-  ]
 
 
   @HostListener('window:resize')
   onResize() {
-    console.log(window.innerWidth);
-
     this.isMobile = window.innerWidth < 768;
     this.option = this.getOption();
   }
 
   ngOnInit(){
-    this.option = this.getOption();
+    this.onResize()
   }
 
   getOption(){
     return {
+      tooltip: {
+        trigger: 'item'
+      },
       legend: {
         show: true,
         data: ["Муж", "Жен"],

@@ -24,14 +24,12 @@ export class RacingBarChartComponent {
 
   @HostListener('window:resize')
   onResize() {
-    console.log(window.innerWidth);
-
     this.isMobile = window.innerWidth < 768;
     this.option = this.getOption();
   }
 
   ngOnInit(){
-    this.option = this.getOption();
+    this.onResize();
   }
 
   getOption(){

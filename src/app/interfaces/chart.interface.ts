@@ -48,3 +48,7 @@ export interface BarChart{
   husbandsValues: number[],
   wifesValues: number[],
 }
+export interface LineChart{
+  title: string,
+  values: {name: string, values: { timestamp: Date, value: number}[]}[]
+}

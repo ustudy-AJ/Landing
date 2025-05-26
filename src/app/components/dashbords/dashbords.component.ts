@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, inject, ViewChild } from '@angular/core';
 import { ChartsService } from '../charts/charts.service';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
-import { averageResultData, barStatisticGenderData, certificatesByRegionData, pieStatisticGenderData, purposeOfCertificatesData, startCoursesData, topFamousCourses, uniqueUsersByRegionData } from '../../data/chart.data';
+import { averageResultData, barStatisticGenderData, certificatesByRegionData, pieStatisticGenderData, purposeOfCertificatesData, siteUsersStatisticData, startCoursesData, topFamousCourses, uniqueUsersByRegionData } from '../../data/chart.data';
 import { RacingBarChartComponent } from './racing-bar-chart/racing-bar-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { PieGenderChartComponent } from './pie-gender-chart/pie-gender-chart.component';
@@ -9,7 +9,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import StatisticComponent from '../statistic/statistic.component';
 import Statistic2Component from '../statistic-2/statistic-2.component';
 import { color } from 'echarts';
-import { BarChart, PieChart, PieGenderChart, RacingBarChart } from '../../interfaces/chart.interface';
+import { BarChart, LineChart, PieChart, PieGenderChart, RacingBarChart } from '../../interfaces/chart.interface';
 
 @Component({
   selector: 'app-dashbords',
@@ -28,4 +28,6 @@ export default class DashbordsComponent {
   barStatisticGender: BarChart = barStatisticGenderData;
   pieStatisticGender: PieGenderChart = pieStatisticGenderData;
 
+
+  siteUsersStatistic: LineChart = siteUsersStatisticData;
 }

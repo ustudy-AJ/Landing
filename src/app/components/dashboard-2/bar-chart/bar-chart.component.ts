@@ -14,24 +14,18 @@ import { color } from 'echarts';
 export class BarChartComponent {
   @Input() styleClass!: string;
   @Input() data!: TopCourses;
-  @Input() colorIndex: number = 0;
 
   option!: any;
   private isMobile: boolean = false;
-  gradientColors = [
-    ["#4129C8","#976AE5"],
-    ["#8353D5","#F665A8"],
-  ]
 
   @HostListener('window:resize')
   onResize() {
-    console.log(window.innerWidth);
-
     this.isMobile = window.innerWidth < 768;
     this.option = this.getOption();
   }
 
   ngOnInit(){
+    this.isMobile = window.innerWidth < 768;
     this.option = this.getOption();
   }
 
@@ -41,8 +35,8 @@ export class BarChartComponent {
       grid: {
         left: '-150',
         right: '4%',
-        bottom: '10%',
-        top: '0%',
+        bottom: '0%',
+        top: '5%',
         containLabel: true
       },
       xAxis: {
@@ -58,9 +52,6 @@ export class BarChartComponent {
         axisLine: { show: false },
         axisLabel: {
           align: 'left',
-          nameTextStyle: {
-            align: "center"
-          },
           margin: this.isMobile ? 0: 220,
           fontSize: 14,
           color: "#94A3B8",
@@ -74,13 +65,13 @@ export class BarChartComponent {
             show: this.isMobile,
             position: 'insideLeft',
             fontSize: 12,
-            color: '#000',
+            color: "#94A3B8",
             formatter: "{b}"
           },
           itemStyle: {
             color: 'transparent'
           },
-          barGap: '0%',
+          barGap: '10%',
           barWidth: '20'
         },
         {

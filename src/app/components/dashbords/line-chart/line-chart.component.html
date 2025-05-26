@@ -1,6 +1,12 @@
 <div #chartContainer class="p-[20px] flex flex-col gap-[20px] bg-[white] rounded-[16px] {{styleClass}}">
-  <div class="w-full flex justify-center">
-    <p class="font-semibold text-[18px]">{{title}}</p>
+  <div class="w-full flex justify-between items-center">
+    <p class="font-semibold text-[18px]">{{data.title}}</p>
+    <div class="px-[15px] py-[10px] rounded-[8px] border border-[#D0CDDD]">
+      <select [(ngModel)]="viewBy" (change)="chageViewBy(viewBy)" class="outline-none">
+        <option value="months">По месяцам</option>
+        <option value="weekdays">По дням недели</option>
+      </select>
+    </div>
   </div>
   <div class="w-full h-full relative">
     <div echarts [options]="option" class="chart" style="height: 100%;"></div>
